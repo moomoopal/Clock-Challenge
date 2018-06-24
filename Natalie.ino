@@ -44,6 +44,20 @@ void blinkyFast(){
   delay(500);
 }
 
+void nightLight(){
+  //if it is dark 995
+  if (analogRead(1)>900){
+    //turn light on
+    digitalWrite(7,HIGH);
+ }  
+  //if it is light 820
+  if (analogRead(1)<900){
+    //turn light off
+    digitalWrite(7,LOW);
+  }
+}  
+
+
 
 void blinky(){
   digitalWrite(7,HIGH);
@@ -58,6 +72,7 @@ void setup() {
   pinMode(7,OUTPUT);
   blue.attach(9);
   pinMode(2,INPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -65,11 +80,16 @@ void loop() {
 // blinky();
  //blinkyFast();
 
+ nightLight();
+
+ Serial.println(analogRead(1));
+
  //if button is pressed, 
  if(digitalRead(2)==LOW){
    //start clockChallenge
-  delay(2000);
+  delay(1000);
   if(digitalRead(2)==LOW){
+     clockChallenge();
      clockChallenge();
   }
   //clockChallenge();
